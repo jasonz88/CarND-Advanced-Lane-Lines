@@ -142,6 +142,9 @@ Here I'll talk about the approach I took, what techniques I used, what worked an
 * Shades in the road: Introduce L channel in HLS color space. it worked very well in removing shades which are low values in the L channel.
 * Long duration of shady area in the road: Sanity checks of the detected lane lines can help. Basically if the detected lane lines vary a lot from previous ones, then we have to use the previous N good detection to infer the next one instead of following the wrong detection.
 * Wobbly lines: this can also be avoided effectively by the smoothing from the last N datapoints.
-* Challenge and harder video: they are closer to real life scenarios. the carpool lane sign on the ground, different color inside the lane, ascending landscape, slopes, mirror of the dashboard on wind shield, sharp turns, other vehicles; these are all distractions; in order to get a better result, I will need to redo the camera calibration and perspective transformation and come up with a better approach for lane line detection as well as the video pipeline sanity check. I think deep neural network might shine here.
+* Challenge and harder video: they are closer to real life scenarios. the carpool lane sign on the ground, different color inside the lane, ascending landscape, slopes, mirror of the dashboard on wind shield, sharp turns, other vehicles; these are all distractions;
+
+in order to get a better result, I will need to redo the camera calibration and perspective transformation and come up with a better approach for lane line detection as well as the video pipeline sanity check. One thing worth trying would be create a set of profile of lane detector parameters and attempt a different profile when the pipeline failed, we need a better classification based on the cause of failure like the current pipeline prints the reason it failed the sanity check; there might be a mapping that profile A is helpful in solving failure signature B. Given this is a mapping from X->Y problem. I think deep neural network might shine here.
+
 ![alt text][image14]
 
